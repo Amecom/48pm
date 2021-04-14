@@ -31,8 +31,8 @@ o utilizzando il metodo POST.
   https://api.48.pm/list
 
 * È possibile ottenere una documentazione sui parametri supportati da una 
-  specifica API interrogando https://api.48.pm/<APINAME>/help 
-  sostituendo `<APINAME>` con il nome della API di cui si vogliono 
+  specifica API interrogando https://api.48.pm/APINAME/help 
+  sostituendo `APINAME` con il nome della API di cui si vogliono 
   le informazioni. 
 
 * È possibile ottenere una lista di valori supportati da alcuni parametri
