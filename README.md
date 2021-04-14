@@ -1,4 +1,4 @@
-#Introduzione
+# Introduzione
 
 48pm è una piattaforma di data mining e analisi di articoli provenienti
 dai principali giornali e magazine online in cinque lingue e 
@@ -19,7 +19,7 @@ l'app 48pm. Questo documento vuole introdurre l’utilizzo
 delle API pubbliche fornendo, quando necessario, anche qualche dettaglio tecnico. 
 
 
-##Introduzione alle API
+## Introduzione alle API
 
 Le API di 48pm forniscono un interfaccia stabile per interrogare le informazioni 
 (articoli, video, scrittori, etc) archiviate e analizzate da 48pm.
@@ -50,7 +50,7 @@ La API “article”, è sicuramente la più articolata, i cui parametri sono
 spesso comuni con le altre API per cui verrà spiegata più nel dettaglio.
 
 
-#API ARTICLE
+# API ARTICLE
 
 Endpoint: https://api.48.pm/article
 
@@ -90,7 +90,7 @@ Nel corso dei successivi esempi verrà sempre appeso il parametro
 `page_index=0` a tutte le richieste per facilitare la lettura delle risposte.
 
 
-###Valori multipli
+### Valori multipli
 Alcuni parametri supportano valori multipli e questi devono essere passati
 separati da virgola. La ricerca viene eseguita concatenando questi valori con
 l’operatore *OR* ed esempio chiamando 
@@ -101,20 +101,20 @@ I parametri che supportano valori multipli sono quelli che hanno specificato
 *multivalues: True* nella descrizione del parametro ottenibile chiamando 
 l’help della API.
 
-###Parametri di esclusione
+### Parametri di esclusione
 Molti dei parametri supportati dalle API hanno un corrispettivo di esclusione.
 Il parametro `language` ad esempio ha il suo corrispettivo `not_language`.
 Chiamando
 https://api.48.pm/article?not_language=it&page_index=0
 escluderò dai risultati tutti gli articoli scritti in italiano.
 
-##Filtrare per ID articolo
+## Filtrare per ID articolo
 Il parametro `article` permette di recuperare informazioni su uno o più 
 articoli di cui conosciamo l’ID. Supporta valori multipli ed esiste 
 il corrispettivo di esclusione `not_article`.
 
 
-##Filtrare per lingua
+## Filtrare per lingua
 
 È possibile cercare articoli scritti in una o più lingue utilizzando il parametro 
 `language` ad esempio
@@ -127,7 +127,7 @@ del JSON ottenuto chiamando https://api.48.pm/codes
 Il parametro `language` supporta valori multipli ed è possibile utilizzare 
 il parametro `not_language` per escludere articoli scritti in una o più lingue.
 
-##Filtrare per nazione
+## Filtrare per nazione
 
 È possibile ottenere articoli provenienti da una o più nazioni 
 utilizzando il parametro `country` ad esempio 
@@ -143,7 +143,7 @@ impostando `country=xx`.
 Il parametro `country` supporta valori multipli ed è possibile utilizzare 
 `not_country` per escludere articoli provenienti da una o più nazioni.
 
-##Filtrare per autore
+## Filtrare per autore
 
 È possibile filtrare articoli per autore utilizzando il parametro `author`
 tuttavia è necessario conoscere l’ID dell’autore per poterlo usare come filtro.
@@ -165,7 +165,7 @@ Il parametro `author` supporta valori multipli ed è possibile escludere autori
 dai risultati utilizzando il parametro `not_author`.
 
 
-##Filtrare per scrittore
+## Filtrare per scrittore
 
 Come per gli autori è possibile ottenere articoli scritti da uno o più 
 scrittori utilizzando la stessa logica di author ma utilizzando il parametro
@@ -190,7 +190,7 @@ una successiva analisi ha poi aggregato l’ID *565081* all’ID *34288*.
 Questa informazione mi viene data chiamando
 https://api.48.pm/writer_maintainer?writer=565081
 
-##Filtrare per entità
+## Filtrare per entità
 
 Una entità può essere una persona, un personaggio immaginario, una azienda,
 una città, un film, un festival, una squadra di calcio, un argomento,
@@ -224,7 +224,7 @@ mentre chiamando
 https://api.48.pm/artice?entity_all=6279,7163&page_index=0 
 ottengo articoli che includo Joe Binen (6279) *E* Politica (7163).
 
-###Vantaggi nell’uso delle entità
+### Vantaggi nell’uso delle entità
 L’utilizzo delle entità ha diversi vantaggi rispetto a un ricerca testuale:
 1. La ricerca testuale è molto dispendiosa soprattutto 
    quando si cerca tra milioni di articoli e si ha a disposizione una
@@ -238,7 +238,7 @@ L’utilizzo delle entità ha diversi vantaggi rispetto a un ricerca testuale:
    la traduzione di termini in lingue diverse se *Italy* e *Italia*
    sono due parole “diverse” ma corrispondo allo stesso ID entità.
 
-###Localizzazione delle informazioni entità
+### Localizzazione delle informazioni entità
 Quando si ottengono informazioni su un articolo il nodo *.entity* 
 del JSON restituito contiene le informazioni sulle entità associate
 ad esso associate. 
@@ -252,7 +252,7 @@ Facciamo un esempio guardando i dati restituiti chiamando
 https://api.48.pm/article?page_index=0 e poi chiamando 
 https://api.48.pm/article?page_index=0&local_language=it
 
-##Filtrare per canale
+## Filtrare per canale
 Gli articoli analizzati vengono sempre ricondotti 
 ad almeno un argomento come sport, tecnologia, politica, etc, etc,
 chiamato canale. È possibile cercare articoli provenienti da uno o più canali
@@ -271,7 +271,7 @@ parametro `channel`.
 Il parametro `channel` supporta valori multipli ed è possibile
 escludere articoli associati a un canale utilizzando `not_channel`.
 
-##Filtrare per testo
+## Filtrare per testo
 
 Come detto la ricerca per ID entità è, nella maggior parte dei casi,
 preferibile a un ricerca testuale tuttavia è possibile cercare articoli
@@ -291,12 +291,12 @@ misto sostituendo quando possibile le parole con gli ID entità associati
 relegando solo le parole “sconosciute” a una ricerca testuale pura 
 e, di conseguenza, il lasso di tempo di ricerca potrebbe essere esteso.
 
-##Ottenere articoli in evidenza
+## Ottenere articoli in evidenza
 Gli articoli in evidenza hanno una API dedicata *topstory* 
 tuttavia anche attraverso la API *article* e possibile selezionare 
 gli articoli in evidenza attraverso il parametro `topstory=1`
 
-##Ottenere la copertura completa di un articolo in evidenza
+## Ottenere la copertura completa di un articolo in evidenza
 Gli articoli in evidenza sono tali solitamente perché più fonti trattano
 lo stesso argomento, è possibile trovare l’ID argomento nel nodo *keyword* 
 del JSON di risposta. Conoscendo l’ID di un argomento è possibile ottenere 
@@ -305,11 +305,11 @@ Ad esempio le parole *covid vacine* hanno generato una topstory
 il cui ID è *59715*. Per ottenere una copertura completa su questa parola chiave
 basta chiamare https://api.48.pm/article?keyword=59715&page_index=0
 
-##Rimuovere blog e fonti locali
+## Rimuovere blog e fonti locali
 Nel caso si desideri escludere dai risultati di ricerca 
 le *fonti locali* e i *blog* occorre impostare il parametro `majorpress=1`
 
-##Trovare articoli associati a un video
+## Trovare articoli associati a un video
 Alcuni articoli includo il collegamento a un video le cui informazioni 
 sono inserite nel nodo *.video* del JSON di risposta. Ad esempio chiamando 
 https://api.48.pm/article?article=l4ck7d0 si può vedere che l’articolo 
@@ -325,7 +325,7 @@ La ricerca di video può essere eseguita attraverso la API *video_type*:
 https://api.48.pm/video_type
 
 
-##Paginazione dei risultati
+## Paginazione dei risultati
 Interrogando una API è molto probabile che i risultati restituiti 
 siano solo una parte dei risultati disponibili.
 Prima di vedere come è possibile muoversi tra i risultati è necessario
@@ -357,7 +357,7 @@ praticamente comuni a tutte le API, utili per paginare i risultati e sono:
   articolo.
 
 
-###Utilizzo dinamico di page_start e page_stop
+### Utilizzo dinamico di page_start e page_stop
 Nelle API i cui risultati sono organizzati cronologicamente come *article* 
 i parametri `page_start` e `page_stop` possono ricevere:
 
@@ -372,21 +372,21 @@ i parametri `page_start` e `page_stop` possono ricevere:
 - *un ID articolo* nel qual caso verranno restituiti articoli partendo
   dall’ID inserito (ID articolo non incluso).
 
-###Ricevere aggiornamenti
+### Ricevere aggiornamenti
 Memorizzando il valore di *response.start* ottenuto da una ricerca posso
 successivamente utilizzare questo valore nel parametro `page_stop`
 per sapere si vi sono nuovi articoli disponibili dall’ultima chiamata:
 `page_stop=<response.start>`.
 
 
-###Ordinamento 
+### Ordinamento 
 La API article non supporta nessun ordinamento, gli articoli vengono sempre
 e solo restituiti in ordine cronologico dal più recente.
 Altre API supportano l’ordinamento tramite l’uso del parametro `page_order`.
 Consultare l’help delle singole API per sapere se l’ordinamento è supportato e
 quali sono le opzioni di ordinamento disponibili.
 
-##Nota tecnica
+## Nota tecnica
 48pm utilizza MYSQL come database.
 
 La API *article* supporta molti parametri 
@@ -414,7 +414,7 @@ in pochi millisecondi quello che una query unica impiegava svariati minuti e
 ha semplificando sia la leggibilità che la manutenzione del codice.
 
 
-#Query concorrenti
+# Query concorrenti
 In alcuni casi è utile eseguire più ricerche contemporaneamente riducendo 
 così i tempi di latenza per fare questo esiste un 
 endpoit specifico: https://api.48.pm/concurrent_query.
@@ -440,7 +440,7 @@ il parametro *api*, ad esempio il JSON:
 Inviato all'endpoint https://api.48.pm/concurrent_query restituisce una lista
 con i risultati delle due richieste utilizzando un singola chiamata.
 
-#API TOPSTORY
+# API TOPSTORY
 Endpoint: https://api.48.pm/topstory
 
 La API *topsory* restituisce gli articoli in evidenza.
@@ -449,7 +449,7 @@ nel file di help*** https://api.48.pm/topstory/help questa API ***supporta tutti
 i parametri descritti nella API article*** più altri parametri specifici.
 È utile spigare qualche differenza rilevante.
 
-##Parametro author 
+## Parametro author 
 Il parametro `author` NON viene utilizzato come filtro ma come suggerimento.
 
 Per comprendere meglio è utile ricordare che una topstory
@@ -462,7 +462,7 @@ quando possibile da un articolo pubblicato da un autore tra quelli indicati
 nel parametro `author`, se non possibile verrà coperto 
 da un qualsiasi altro autore (tranne quelli inclusi nel parametro `not_author`)
 
-##Ordinamento
+## Ordinamento
 La API *topstory* supporta l'ordinamento attraverso il parametro `page_ order`, 
 
 L'ordinamento è tuttavia sempre vincolato da un ordine cronologico giornaliero
@@ -479,7 +479,7 @@ I valori possibili di `page_order` sono:
 
 Vediamo alcune differenze
 
-###Ordinamento time_relevance vs. relevance
+### Ordinamento time_relevance vs. relevance
 
 Ogni articolo viene etichettato con due punteggi, uno di rilevanza e uno di
 rilevanza nel tempo. Semplificando è possibile dire che
@@ -495,7 +495,7 @@ meno rilevante ma molto attuale potrebbe essere mostrato prima di un articolo
 più rilevante ma di cui non vengono pubblicati aggiornamenti da qualche
 ora.
 
-###Ordinamento toptoday
+### Ordinamento toptoday
 Simile a *relevance* ma attenua il problema di ordinamento
 al passaggio tra un giorno e un altro. Come si diceva prima ogni forma di
 ordinamento scelto è comunque vincolato da blocchi giornalieri. Questo vuol dire
@@ -507,7 +507,7 @@ per rilevanza che valuta come appartenenti allo stesso gruppo temporale
 tutte le topstory delle ultime 18 ore anche a cavallo della mezzanotte.
 
 
-#API di ricerca
+# API di ricerca
 Come già accennato durante la trattazione della API *article*
 le query di ricerca sono quello utilizzate per cercare ID autori, scrittori 
 ed entità tuttavia queste API mettono a disposizione
@@ -526,10 +526,10 @@ sono ammessi da ogni API chiamare l'endpoint
 aggiungendo */help*.
 
 
-#API Speciali
+# API Speciali
 Esistono API che hanno lo scopo di suggerire o fornire classifiche e sono:
 
-##API author_suggestion
+## API author_suggestion
 Endpoint: https://api.48.pm/author_suggestion
 Questa API suggerisci altri autori passando una lista di
 autori preferiti tramite il parametro (obbligatorio) `author` 
@@ -550,7 +550,7 @@ più in linea con le mie preferenze.
 Per la lista completa dei parametri supportati
 chiamare https://api.48.pm/author_suggestion/help
 
-##API entity_trends
+## API entity_trends
 Endpoint: https://api.48.pm/entity_trends
 Questa API suggerisce le entità di tendenza. Le tendenze
 sono sempre geo localizzate per cui è obbligatorio
@@ -566,7 +566,7 @@ Per la lista completa dei parametri supportati
 chiamare https://api.48.pm/entity_trends/help
 
 
-##API video_type
+## API video_type
 Endpoint: https://api.48.pm/video_type
 Questa API restituisce classifiche di video esistono diverse
 classifiche selezionabili tramite il parametro `video_type`
@@ -580,7 +580,7 @@ incluse le opzioni di ordinamento consultare
 https://api.48.pm/video_type/help
 
 
-#Manipolazione delle immagini
+# Manipolazione delle immagini
 Più avanti verrà esaminata nel dettaglio la risposta JSON
 ottenuta quando viene chiamata una API ma per ora soffermiamoci
 sugli url immagine associati ad autori, scrittori ed entità 
@@ -654,7 +654,7 @@ che mostra:
 
 ![immagine](https://img.48.pm/n/l4ajEm1?w=300&h=100&x=379&y=81)
 
-#Analisi del JSON di risposta
+# Analisi del JSON di risposta
 
 Il JSON di risposta ottenuto chiamando una API fornisce diverse
 informazioni alcune sono abbastanza facili da interpretare
