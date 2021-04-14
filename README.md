@@ -46,8 +46,8 @@ per cercare in basi di dati più specifiche e altre ancora come
 "topstory", "entity_trends" o "author_suggestion" che forniscono un accesso 
 a informazioni più elaborate.
 
-La API “article”, è sicuramente la più articolata, i cui parametri sono 
-spesso comuni con le altre API per cui verrà spiegata più nel dettaglio.
+*article* è sicuramente la API più articolata, i cui parametri sono 
+spesso comuni in altre API per questa verrà spiegata più nel dettaglio.
 
 
 # API ARTICLE
@@ -110,7 +110,7 @@ escluderò dai risultati tutti gli articoli scritti in italiano.
 
 ## Filtrare per ID articolo
 Il parametro `article` permette di recuperare informazioni su uno o più 
-articoli di cui conosciamo l’ID. Supporta valori multipli ed esiste 
+articoli di cui si conosce l’ID. Supporta valori multipli ed esiste 
 il corrispettivo di esclusione `not_article`.
 
 
@@ -236,12 +236,11 @@ L’utilizzo delle entità ha diversi vantaggi rispetto a un ricerca testuale:
    differenti mentre durante l'analisi di un articolo il sistema 
    li riconosce come la medesima entità. Un altro esempio riguarda 
    la traduzione di termini in lingue diverse se *Italy* e *Italia*
-   sono due parole “diverse” ma corrispondo allo stesso ID entità.
+   sono due parole “diverse” corrispondo allo stesso ID entità.
 
 ### Localizzazione delle informazioni entità
 Quando si ottengono informazioni su un articolo il nodo *.entity* 
-del JSON restituito contiene le informazioni sulle entità associate
-ad esso associate. 
+del JSON restituito contiene le informazioni sulle entità associate. 
 Tra le informazioni alcune come la descrizione e il titolo 
 sono in lingua inglese tuttavia è possibile ottenere una versione 
 localizzata di tali informazioni impostando il parametro `local_language` 
@@ -385,6 +384,11 @@ e solo restituiti in ordine cronologico dal più recente.
 Altre API supportano l’ordinamento tramite l’uso del parametro `page_order`.
 Consultare l’help delle singole API per sapere se l’ordinamento è supportato e
 quali sono le opzioni di ordinamento disponibili.
+
+### Concatenzione di parametri
+Anche se abbastanza logico potrebbe essere utile far presente che i
+più parametri di ricerca posono essere utilizzati in contemporanea.
+Parametri differenti vengono intersecati tra loro con il parametro *AND*.
 
 ## Nota tecnica
 48pm utilizza MYSQL come database.
@@ -539,7 +543,7 @@ della *CNN* è *129*, utilizzando questo ID posso
 ottenere suggerimenti su altri autori chiamando
 https://api.48.pm/author_suggestion?author=129
 Il parametro `author` supporta liste di valori
-ed è possibile impostare contemporaneità anche una lista
+ed è possibile impostare anche una lista
 di autori da escludere tramite `not_author`.
 
 Tra gli altri parametri posso specificare una lista di 
@@ -648,7 +652,7 @@ nel nodo *.image* è presente un nodo *.relevant*
 con i valori {x: 379, y: 81}
 
 Provando ad appendere questi due valori alla precedente
-richiesta otterremmo il seguente url 
+richiesta potremmo costruire il seguente url 
 https://img.48.pm/n/l4ajEm1?w=300&h=100&x=379&y=81
 che mostra:
 
