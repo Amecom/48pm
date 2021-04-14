@@ -1,4 +1,4 @@
-# Introduzione
+# Introduzione (BOZZA)
 
 48pm è una piattaforma di data mining e analisi di articoli provenienti
 dai principali giornali e magazine online in cinque lingue e 
@@ -663,3 +663,5 @@ utilizzeremo la risposta che descrive un articolo dato che
 comprende tutti i tipi di dati possibili. Per intenderci il nodo 
 *.author* di un articolo descrive un autore esattamente
 come farebbe la API *author* cercando un autore.
+
+*** DA COMPLETARE ***
